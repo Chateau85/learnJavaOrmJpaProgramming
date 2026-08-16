@@ -1,9 +1,15 @@
 package hellojpa;
 
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.Id;
+import jakarta.persistence.OneToMany;
 
-import javax.persistence.*;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
+import java.util.Objects;
 
 @Entity
 public class Team {
@@ -33,10 +39,12 @@ public class Team {
     }
 
     public List<Member> getMembers() {
-        return members;
+        return Collections.unmodifiableList(members);
     }
 
-    public void setMembers(List<Member> members) {
-        this.members = members;
+    public void addMember(Member member) {
+        Member requiredMember = Objects.requireNonNull(member, "member must not be null");
+        members.add(requiredMember);
+        requiredMember.setTeam(this);
     }
 }

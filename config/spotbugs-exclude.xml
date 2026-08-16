@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<FindBugsFilter>
+    <!-- JPA association navigation intentionally returns the managed Team entity. -->
+    <Match>
+        <Class name="hellojpa.Member"/>
+        <Method name="getTeam"/>
+        <Bug pattern="EI_EXPOSE_REP"/>
+    </Match>
+</FindBugsFilter>
